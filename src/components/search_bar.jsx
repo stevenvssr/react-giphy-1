@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  handleUpdate = (event) => {
-    this.props.searchFunction(event.target.value);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      term: ''
+    };
   }
 
+  handleUpdate = (event) => {
+    this.setState({
+      term: event.target.value
+    });
+    this.props.searchFunction(event.target.value);
+  }
   render() {
-    return (
+    return(
       <input
-        type="text"
-        className="form-control form-search"
-        onChange={this.handleUpdate}
+      value={this.state.term}
+      type="text"
+      className="form-control form-search"
+      onChange={this.handleUpdate}
       />
     );
   }

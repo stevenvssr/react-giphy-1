@@ -7,10 +7,18 @@ class Gif extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.id !== this.props.id;
+  }
+
   render() {
-    const src = `https://media2.giphy.com/media/${this.props.id}/200.gif`;
+
+    if (!this.props.id) {
+      return null;
+    }
+    const src = `https://media1.giphy.com/media/${this.props.id}/giphy.webp`;
     return (
-      <img src={src} className="gif" onClick={this.handleClick} />
+      <img className="gif" src={src} alt="Sport" onClick={this.handleClick} />
     );
   }
 }
